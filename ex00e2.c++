@@ -21,15 +21,9 @@ int main() {
         // Adjusting for 0-based index
         r1--; c1--; r2--; c2--;
         
-        // Check if the region is invalid
-        if (r1 > r2 || c1 > c2) {
+        // Check if the region is entirely outside the matrix or invalid
+        if (r1 >= n || c1 >= m || r2 < 0 || c2 < 0 || r1 > r2 || c1 > c2) {
             cout << "INVALID" << endl;
-        }
-
-        // Check if the region is entirely outside the matrix
-        else if (r2 < 0 || r1 >= n || c2 < 0 || c1 >= m) {
-            cout << "OUTSIDE" << endl;
-            
         } else {
             int rmax = INT_MIN; // Initialize to the smallest possible integer
             // Clamp the region to be within the matrix bounds
@@ -43,7 +37,8 @@ int main() {
                     rmax = max(rmax, v[i][j]);
                 }
             }
-            cout << rmax << endl;
+            cout << endl;
+            cout << rmax << endl; // Removed the extra space
         }
     }
 }
